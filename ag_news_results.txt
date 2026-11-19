@@ -1,0 +1,35 @@
+AG News comparison: GatedCumulativeLayer vs nn.MultiheadAttention
+train_rows=12000 test_rows=2000 d_model=128 n_layers=2 max_len=64 epochs=2 batch=64 lr=0.0003
+
+MHA (nn.MultiheadAttention)
+  test_acc       = 0.6995
+  test_loss      = 0.780
+  train_time (s) = 59.7
+  total params   = 2,579,076
+  attn params    = 132,096
+
+  step history: epoch step tr_loss tr_acc elapsed_s
+    1 50 1.3662 0.2969 7.6
+    1 100 1.2870 0.5000 15.2
+    1 150 1.1619 0.5312 23.3
+    2 200 0.9860 0.6250 32.0
+    2 250 0.9667 0.6562 39.7
+    2 300 0.8842 0.7031 47.2
+    2 350 0.8583 0.5938 54.9
+
+GatedCumulative (ours)
+  test_acc       = 0.6895
+  test_loss      = 0.823
+  train_time (s) = 58.4
+  total params   = 2,579,076
+  attn params    = 132,096
+
+  step history: epoch step tr_loss tr_acc elapsed_s
+    1 50 1.3622 0.3438 7.5
+    1 100 1.2647 0.5000 15.1
+    1 150 1.1177 0.5000 22.6
+    2 200 0.9594 0.6875 30.8
+    2 250 0.9200 0.6250 38.2
+    2 300 0.8723 0.7344 45.8
+    2 350 0.8575 0.7500 53.3
+

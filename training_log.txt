@@ -1,0 +1,42 @@
+device: cpu
+loading AG News...
+  train rows: 120000, test rows: 7600
+  using train=12000, test=2000
+building vocab...
+  vocab size: 16980
+  token length: mean 39.5, p95 59, max 161
+
+=== Training MHA (nn.MultiheadAttention) ===
+  total params: 2,579,076  attn-sublayer params: 132,096
+  epoch 1 step   50 tr_loss 1.366 tr_acc 0.297 (8s)
+  epoch 1 step  100 tr_loss 1.287 tr_acc 0.500 (15s)
+  epoch 1 step  150 tr_loss 1.162 tr_acc 0.531 (23s)
+  >> epoch 1 done: test_acc 0.6145 test_loss 0.980
+  epoch 2 step  200 tr_loss 0.986 tr_acc 0.625 (32s)
+  epoch 2 step  250 tr_loss 0.967 tr_acc 0.656 (40s)
+  epoch 2 step  300 tr_loss 0.884 tr_acc 0.703 (47s)
+  epoch 2 step  350 tr_loss 0.858 tr_acc 0.594 (55s)
+  >> epoch 2 done: test_acc 0.6995 test_loss 0.780
+  total train time: 59.7s   final test_acc: 0.6995
+
+=== Training GatedCumulative (ours) ===
+  total params: 2,579,076  attn-sublayer params: 132,096
+  epoch 1 step   50 tr_loss 1.362 tr_acc 0.344 (8s)
+  epoch 1 step  100 tr_loss 1.265 tr_acc 0.500 (15s)
+  epoch 1 step  150 tr_loss 1.118 tr_acc 0.500 (23s)
+  >> epoch 1 done: test_acc 0.5730 test_loss 1.036
+  epoch 2 step  200 tr_loss 0.959 tr_acc 0.688 (31s)
+  epoch 2 step  250 tr_loss 0.920 tr_acc 0.625 (38s)
+  epoch 2 step  300 tr_loss 0.872 tr_acc 0.734 (46s)
+  epoch 2 step  350 tr_loss 0.857 tr_acc 0.750 (53s)
+  >> epoch 2 done: test_acc 0.6895 test_loss 0.823
+  total train time: 58.4s   final test_acc: 0.6895
+
+==============================================================================
+FINAL COMPARISON
+==============================================================================
+model                             test_acc  test_loss   time_s     params
+MHA (nn.MultiheadAttention)         0.6995      0.780     59.7  2,579,076
+GatedCumulative (ours)              0.6895      0.823     58.4  2,579,076
+
+results saved to: /home/z/my-project/download/ag_news_results.txt
